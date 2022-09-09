@@ -40,14 +40,6 @@ public class AdminTools {
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ServerConfig.SPEC, "example-mod-server.toml");
 
         // Register ourselves for server and other game events we are interested in
-        File f = new File("sample.txt");
-        try {
-            LOGGER.info("Created file? {}", f.createNewFile());
-            var file = new File("sample.txt");
-            LOGGER.info("File exists? {}", file.exists());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         MinecraftForge.EVENT_BUS.register(this);
     }
 
