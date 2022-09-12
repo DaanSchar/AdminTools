@@ -2,7 +2,9 @@
   "required": true,
   "package": "com.daan.admintools.mixin",
   "compatibilityLevel": "JAVA_8",
-  "mixins": [],
+  "mixins": [
+    "MixinElytra"
+  ],
   "injectors": {
     "defaultRequire": 1
   },
