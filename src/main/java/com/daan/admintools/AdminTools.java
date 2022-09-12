@@ -1,5 +1,6 @@
 package com.daan.admintools;
 
+import com.daan.admintools.config.ClientConfig;
 import com.daan.admintools.config.ServerConfig;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.level.block.Block;
@@ -38,7 +39,7 @@ public class AdminTools {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ServerConfig.SPEC, "example-mod-server.toml");
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ServerConfig.SPEC, "example-mod-client.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC, "example-mod-client.toml");
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
