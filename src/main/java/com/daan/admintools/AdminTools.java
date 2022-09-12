@@ -38,6 +38,7 @@ public class AdminTools {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ServerConfig.SPEC, "example-mod-server.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ServerConfig.SPEC, "example-mod-client.toml");
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);

@@ -1,6 +1,7 @@
 package com.daan.admintools.mixin;
 
 
+import com.daan.admintools.config.ClientConfig;
 import com.daan.admintools.config.ServerConfig;
 import com.mojang.logging.LogUtils;
 import net.minecraft.ChatFormatting;
@@ -25,8 +26,8 @@ public class MixinElytra {
      */
     @Overwrite
     public boolean canElytraFly(ItemStack stack, net.minecraft.world.entity.LivingEntity entity) {
-        if (entity instanceof Player player && ServerConfig.SHOW_MESSAGE.get()) {
-            player.displayClientMessage(getElytraDisabledMessage(), true);
+        if (entity instanceof Player player) {
+            displayMessageToPlayer(player);
         }
 
         return ServerConfig.ENABLE_ELYTRA_FLIGHT.get();
@@ -40,11 +41,19 @@ public class MixinElytra {
      */
     @Overwrite
     public boolean elytraFlightTick(ItemStack stack, net.minecraft.world.entity.LivingEntity entity, int flightTicks) {
-        if (entity instanceof Player player && ServerConfig.SHOW_MESSAGE.get()) {
-            player.displayClientMessage(getElytraDisabledMessage(), true);
+        if (entity instanceof Player player) {
+            displayMessageToPlayer(player);
         }
 
         return ServerConfig.ENABLE_ELYTRA_FLIGHT.get();
+    }
+
+    private void displayMessageToPlayer(Player player) {
+        if (player.getLevel().isClientSide()) {
+            if (ClientConfig.SHOW_MESSAGE.get()) {
+                player.displayClientMessage(getElytraDisabledMessage(), true);
+            }
+        }
     }
 
     private MutableComponent getElytraDisabledMessage() {
