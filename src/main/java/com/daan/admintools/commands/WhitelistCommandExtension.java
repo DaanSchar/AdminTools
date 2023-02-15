@@ -17,8 +17,8 @@ public class WhitelistCommandExtension {
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(
-                Commands.literal("whitelist").requires(sourceStack -> sourceStack.hasPermission(3))
-                        .then(Commands.literal("add").then(Commands.literal("list").then(Commands.argument("targets", GameProfileArgument.gameProfile()).executes(context -> {
+                Commands.literal("bulkwhitelist").requires(sourceStack -> sourceStack.hasPermission(3))
+                        .then(Commands.literal("add").then(Commands.argument("targets", GameProfileArgument.gameProfile()).executes(context -> {
                             List<String> names = getNames(context);
 
                             for (String name : names) {
@@ -26,7 +26,7 @@ public class WhitelistCommandExtension {
                             }
 
                             return 0;
-                        }))))
+                        })))
         );
     }
 
